@@ -1,12 +1,9 @@
-import GetWeatherData from "./hooks/GetWeatherData";
-import { getDate } from "./utils/utils";
+import MainLayout from "./Layout/MainLayout";
 
 function App() {
-  const { weathers } = GetWeatherData("rangpur");
-  const date = getDate();
   return (
     <>
-      <h1>Weather</h1>
+      <MainLayout />
     </>
   );
 }

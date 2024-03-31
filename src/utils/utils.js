@@ -3,7 +3,7 @@ export const apikeys = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
-export const getDate = (d) => {
+export const getDate = () => {
   let months = [
     "January",
     "February",
@@ -34,4 +34,10 @@ export const getDate = (d) => {
   let year = new Date().getFullYear();
 
   return `${day}, ${date} ${month} ${year}`;
+};
+
+export const iconDefaults = {
+  color: "white",
+  size: 112,
+  animate: true,
 };
