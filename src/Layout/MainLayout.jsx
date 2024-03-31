@@ -17,9 +17,9 @@ const MainLayout = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="max-w-[1600px] w-full min-h-[800px] grid grid-cols-1 lg:grid-cols-5  justify-center items-center">
+      <div className="max-w-[1600px] w-full min-h-[800px] grid grid-cols-1 md:grid-cols-5 mx-3 justify-center items-center">
         <div
-          className="lg:col-span-3 h-full w-full"
+          className="md:col-span-3 h-full w-full"
           style={{
             backgroundImage: `url("${img3}")`,
             backgroundPosition: "center",
@@ -29,7 +29,7 @@ const MainLayout = () => {
         >
           <PresCast />
         </div>
-        <div className="lg:col-span-2 h-full min-w-[310px] w-full bg-black opacity-80">
+        <div className="md:col-span-2 h-full  w-full bg-black opacity-80">
           <Forecast wMain={"Haze"} />
         </div>
       </div>

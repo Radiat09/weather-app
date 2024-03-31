@@ -12,8 +12,8 @@ const PresCast = () => {
       </div>
       <div className="flex justify-between items-center ">
         <div>
-          <p className="text-3xl whitespace-nowrap">{clock}</p>
-          <p>{date}</p>
+          <p className="text-2xl md:text-3xl whitespace-nowrap">{clock}</p>
+          <p className="whitespace-nowrap text-sm">{date}</p>
         </div>
         <p className="text-right text-5xl">23&deg;C</p>
       </div>

@@ -11,22 +11,22 @@ const Forecast = ({ wMain }) => {
   //search functionality function
   const search = useCallback(
     (city) => {
-      // if (city || query) {
-      fetch(
-        `${apikeys.base}weather?q=${query ? query : city}&units=metric&APPID=${
-          apikeys.key
-        }`
-      )
-        .then((res) => res.json())
-        .then((result) => {
-          setWeather(result);
-          setIsLoading(false);
-          if (result.cod == 404) {
-            setError(result.message);
-          }
-        })
-        .catch((err) => setError(err.message));
-      // }
+      if (city || query) {
+        fetch(
+          `${apikeys.base}weather?q=${
+            query ? query : city
+          }&units=metric&APPID=${apikeys.key}`
+        )
+          .then((res) => res.json())
+          .then((result) => {
+            setWeather(result);
+            setIsLoading(false);
+            if (result.cod == 404) {
+              setError(result.message);
+            }
+          })
+          .catch((err) => setError(err.message));
+      }
     },
     [query]
   );
@@ -86,6 +86,7 @@ const Forecast = ({ wMain }) => {
   };
 
   // console.log(weather);
+
   return (
     <div className="w-full space-y-8">
       <div className=" flex justify-center mt-3">
@@ -120,8 +121,8 @@ const Forecast = ({ wMain }) => {
             <img
               className="w-6 absolute right-[16%] top-[16%]"
               src="https://images.avishkaar.cc/workflow/newhp/search-white.png"
-              // onClick={search}
-              alt=""
+              onClick={() => search(query ? query : "rangpur")}
+              alt="search button"
             />
           </button>
         </div>
