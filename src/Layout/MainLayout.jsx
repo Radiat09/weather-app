@@ -1,11 +1,10 @@
 // import { apikeys, getDate, iconDefaults } from "../utils/utils";
 // import { useEffect, useState } from "react";
 import img1 from "../assets/images/background.jpg";
-import img2 from "../assets/images/background1.jpg";
 import img3 from "../assets/images/city.jpg";
-import img4 from "../assets/images/city1.jpg";
 
 import Forecast from "../components/Forecast";
+import PresCast from "../components/PresCast";
 
 const MainLayout = () => {
   // const [currWeather, setCurrWeather] = useState(null);
@@ -90,18 +89,20 @@ const MainLayout = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="max-w-7xl min-h-[80vh] grid grid-cols-5  justify-center items-center">
+      <div className="max-w-[1400px] min-h-[800px] grid grid-cols-1 lg:grid-cols-5  justify-center items-center">
         <div
-          className="col-span-3 h-full w-full"
+          className="lg:col-span-3 h-full w-full"
           style={{
             backgroundImage: `url("${img3}")`,
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "100% 100%",
           }}
-        ></div>
-        <div className="col-span-2 h-full min-w-[320px] w-full bg-black opacity-80">
-          <Forecast wMain={"Hazy"} />
+        >
+          <PresCast />
+        </div>
+        <div className="lg:col-span-2 h-full min-w-[320px] w-full bg-black opacity-80">
+          <Forecast wMain={"Haze"} />
         </div>
       </div>
     </div>

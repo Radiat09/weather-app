@@ -82,7 +82,7 @@ const Forecast = ({ wMain }) => {
     return icon;
   };
 
-  // console.log(weather);
+  console.log(weather);
   return (
     <div className="space-y-8">
       <div className=" flex justify-center mt-3">
@@ -119,6 +119,37 @@ const Forecast = ({ wMain }) => {
               alt=""
             />
           </button>
+        </div>
+        <div className="space-y-2">
+          <div className="flex justify-center items-center gap-3">
+            <p className="text-white text-xl font-medium">London, GB</p>
+            <ReactAnimatedWeather
+              icon={iconCase(weather)}
+              color={iconDefaults.color}
+              size={32}
+              animate={iconDefaults.animate}
+            />
+          </div>
+          <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
+          <div className="flex justify-between items-center text-white text-lg px-8">
+            <p>Temarature</p>
+            <p>13c(Clouds)</p>
+          </div>
+          <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
+          <div className="flex justify-between items-center text-white text-lg px-8">
+            <p>Humedity</p>
+            <p>65%</p>
+          </div>
+          <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
+          <div className="flex justify-between items-center text-white text-lg px-8">
+            <p>Visibility</p>
+            <p>1000 mi</p>
+          </div>
+          <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
+          <div className="flex justify-between items-center text-white text-lg px-8">
+            <p>Wind Speed</p>
+            <p>5 kmvh</p>
+          </div>
         </div>
       </div>
     </div>

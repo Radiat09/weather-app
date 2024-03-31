@@ -1,5 +1,5 @@
 export const apikeys = {
-  key: "1da79f4d13866343008178369c9a618a",
+  key: "9361b9b89e2d8ea4bd3b7b4a02f23bf0",
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
