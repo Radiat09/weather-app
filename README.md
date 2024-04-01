@@ -23,7 +23,7 @@ To get a local copy up and running follow these simple example steps.
    ```
 2. CD to the folder
    ```sh
-   cd air-weather
+   cd weather-app
    ```
 3. Install NPM packages
    ```sh
