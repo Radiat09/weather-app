@@ -1,6 +1,7 @@
-# React + Vite
+# Ari Weather                    
+                      
+EasyWeather is a user-friendly weather application designed to provide accurate and up-to-date weather information at your fingertips. With a clean and intuitive interface, EasyWeather makes it effortless to check the current weather conditions, forecasts, and more.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
 
