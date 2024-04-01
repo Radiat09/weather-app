@@ -100,16 +100,19 @@ const Forecast = ({ wMain }) => {
           <div className="w-full space-y-8">
             <div className=" flex justify-center mt-3">
               <ReactAnimatedWeather
-                icon={iconCase(weather)}
+                icon={iconCase(wMain)}
                 color={iconDefaults.color}
                 size={iconDefaults.size}
                 animate={iconDefaults.animate}
               />
             </div>
             <div className="space-y-4">
-              {wMain ? (
+              {!wMain &&
+              !wMain.weather &&
+              !wMain.weather[0] &&
+              !wMain.weather[0].main ? (
                 <h3 className="text-white text-4xl font-medium text-center">
-                  {wMain}
+                  {wMain?.weather[0]?.main}
                 </h3>
               ) : (
                 <h3 className="text-white text-4xl font-medium text-center">
@@ -185,6 +188,6 @@ const Forecast = ({ wMain }) => {
 };
 
 Forecast.propTypes = {
-  wMain: PropTypes.string,
+  wMain: PropTypes.object,
 };
 export default Forecast;

@@ -36,7 +36,7 @@ const PresCast = ({ setCurrentCityMain }) => {
         setCurrLocation(result);
 
         //updating state for shareing to sibling component
-        setCurrentCityMain(currLocation?.weather[0]?.main);
+        setCurrentCityMain(currLocation);
 
         //loading state
         setIsLoading(false);

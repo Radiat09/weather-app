@@ -5,7 +5,7 @@ import Forecast from "../components/Forecast";
 import PresCast from "../components/PresCast";
 
 const MainLayout = () => {
-  const [currentCityMain, setCurrentCityMain] = useState("");
+  const [currentCityMain, setCurrentCityMain] = useState({});
   return (
     <div
       className="w-full bg-slate-400 min-h-screen flex justify-center items-center"
