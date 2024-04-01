@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import ReactAnimatedWeather from "react-animated-weather";
 import { apikeys, iconDefaults } from "../utils/utils";
+import IsLoading from "./IsLoading";
+import PropTypes from "prop-types";
 
 const Forecast = ({ wMain }) => {
   const [query, setQuery] = useState("");
@@ -36,6 +38,7 @@ const Forecast = ({ wMain }) => {
     search("rangpur");
   }, [search]);
 
+  //dynamic icon
   const iconCase = (weather) => {
     let icon = "CLEAR_DAY";
 
@@ -50,6 +53,7 @@ const Forecast = ({ wMain }) => {
       return (icon = "CLEAR_DAY"); // Or whatever default icon you want to use
     }
 
+    //switch for dynamic weather icon
     switch (weather?.weather[0]?.main) {
       case "Haze":
         icon = "CLEAR_DAY";
@@ -85,91 +89,102 @@ const Forecast = ({ wMain }) => {
     return icon;
   };
 
-  // console.log(weather);
-
   return (
-    <div className="w-full space-y-8">
-      <div className=" flex justify-center mt-3">
-        <ReactAnimatedWeather
-          icon={iconCase(weather)}
-          color={iconDefaults.color}
-          size={iconDefaults.size}
-          animate={iconDefaults.animate}
-        />
-      </div>
-      <div className="space-y-4">
-        {weather &&
-        weather?.weather &&
-        weather?.weather[0] &&
-        weather?.weather[0]?.main ? (
-          <h3 className="text-white text-4xl font-medium text-center">
-            {weather.weather[0].main}
-          </h3>
-        ) : (
-          <h3 className="text-white text-4xl font-medium text-center">Haze</h3>
-        )}
-        <div className=" h-[1px] bg-white mx-5"></div>
-        <div className="relative flex justify-center">
-          <input
-            onChange={(e) => setQuery(e.target.value)}
-            value={query}
-            type="text"
-            placeholder="Search any city"
-            className="w-3/4 px-2 h-10 rounded-3xl bg-transparent border border-white text-white focus:outline-none"
-          />
-          <button>
-            <img
-              className="w-6 absolute right-[16%] top-[16%]"
-              src="https://images.avishkaar.cc/workflow/newhp/search-white.png"
-              onClick={() => search(query ? query : "rangpur")}
-              alt="search button"
-            />
-          </button>
+    <>
+      {isLoding ? (
+        <div className="h-full w-full flex justify-center items-center">
+          <IsLoading />
         </div>
-        {typeof weather.main != "undefined" ? (
-          <div className="space-y-2">
-            <div className="flex justify-center items-center gap-3">
-              <p className="text-white text-xl font-medium">
-                {weather.name}, {weather.sys.country}
-              </p>
+      ) : (
+        <>
+          <div className="w-full space-y-8">
+            <div className=" flex justify-center mt-3">
               <ReactAnimatedWeather
                 icon={iconCase(weather)}
                 color={iconDefaults.color}
-                size={32}
+                size={iconDefaults.size}
                 animate={iconDefaults.animate}
               />
             </div>
-            <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
-            <div className="flex justify-between items-center text-white text-lg px-8">
-              <p>Temarature</p>
-              <p>
-                {Math.round(weather?.main?.temp)}°c ({weather.weather[0].main})
-              </p>
-            </div>
-            <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
-            <div className="flex justify-between items-center text-white text-lg px-8">
-              <p>Humedity</p>
-              <p>{Math.round(weather?.main?.humidity)}%</p>
-            </div>
-            <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
-            <div className="flex justify-between items-center text-white text-lg px-8">
-              <p>Visibility</p>
-              <p>{Math.round(weather?.visibility)} mi</p>
-            </div>
-            <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
-            <div className="flex justify-between items-center text-white text-lg px-8">
-              <p>Wind Speed</p>
-              <p>{Math.round(weather.wind.speed)} Km/h</p>
+            <div className="space-y-4">
+              {wMain ? (
+                <h3 className="text-white text-4xl font-medium text-center">
+                  {wMain}
+                </h3>
+              ) : (
+                <h3 className="text-white text-4xl font-medium text-center">
+                  Haze
+                </h3>
+              )}
+              <div className=" h-[1px] bg-white mx-5"></div>
+              <div className="relative flex justify-center">
+                <input
+                  onChange={(e) => setQuery(e.target.value)}
+                  value={query}
+                  type="text"
+                  placeholder="Search any city"
+                  className="w-3/4 px-2 h-10 rounded-3xl bg-transparent border border-white text-white focus:outline-none"
+                />
+                <button>
+                  <img
+                    className="w-6 absolute right-[16%] top-[16%]"
+                    src="https://images.avishkaar.cc/workflow/newhp/search-white.png"
+                    onClick={() => search(query ? query : "rangpur")}
+                    alt="search button"
+                  />
+                </button>
+              </div>
+              {typeof weather.main != "undefined" ? (
+                <div className="space-y-2">
+                  <div className="flex justify-center items-center gap-3">
+                    <p className="text-white text-xl font-medium">
+                      {weather.name}, {weather.sys.country}
+                    </p>
+                    <ReactAnimatedWeather
+                      icon={iconCase(weather)}
+                      color={iconDefaults.color}
+                      size={32}
+                      animate={iconDefaults.animate}
+                    />
+                  </div>
+                  <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
+                  <div className="flex justify-between items-center text-white text-lg px-8">
+                    <p>Temarature</p>
+                    <p>
+                      {Math.round(weather?.main?.temp)}°c (
+                      {weather?.weather[0]?.main})
+                    </p>
+                  </div>
+                  <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
+                  <div className="flex justify-between items-center text-white text-lg px-8">
+                    <p>Humedity</p>
+                    <p>{Math.round(weather?.main?.humidity)}%</p>
+                  </div>
+                  <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
+                  <div className="flex justify-between items-center text-white text-lg px-8">
+                    <p>Visibility</p>
+                    <p>{Math.round(weather?.visibility)} mi</p>
+                  </div>
+                  <div className=" h-[1px] bg-white opacity-35 mx-5"></div>
+                  <div className="flex justify-between items-center text-white text-lg px-8">
+                    <p>Wind Speed</p>
+                    <p>{Math.round(weather?.wind?.speed)} Km/h</p>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-white text-center text-xl font-medium mt-4">
+                  {error}
+                </p>
+              )}
             </div>
           </div>
-        ) : (
-          <p className="text-white text-center text-xl font-medium mt-4">
-            {error}
-          </p>
-        )}
-      </div>
-    </div>
+        </>
+      )}
+    </>
   );
 };
 
+Forecast.propTypes = {
+  wMain: PropTypes.string,
+};
 export default Forecast;

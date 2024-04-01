@@ -1,12 +1,11 @@
-// import { apikeys, getDate, iconDefaults } from "../utils/utils";
-// import { useEffect, useState } from "react";
+import { useState } from "react";
 import img1 from "../assets/images/background.jpg";
 import img3 from "../assets/images/city.jpg";
-
 import Forecast from "../components/Forecast";
 import PresCast from "../components/PresCast";
 
 const MainLayout = () => {
+  const [currentCityMain, setCurrentCityMain] = useState("");
   return (
     <div
       className="w-full bg-slate-400 min-h-screen flex justify-center items-center"
@@ -27,10 +26,12 @@ const MainLayout = () => {
             backgroundSize: "100% 100%",
           }}
         >
-          <PresCast />
+          {/* Rendering users Curent date, time, and some weather Info */}
+          <PresCast setCurrentCityMain={setCurrentCityMain} />
         </div>
         <div className="md:col-span-2 h-full  w-full bg-black opacity-80">
-          <Forecast wMain={"Haze"} />
+          {/* Dynamically showing weather data of any region */}
+          <Forecast wMain={currentCityMain} />
         </div>
       </div>
     </div>
